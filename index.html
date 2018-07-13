@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Neighborhood Map</title>
+		<meta name="viewport" content="initial-scale=1.0">
+			<meta charset="utf-8">
+				<link rel="stylesheet" href="css/style.css">
+					<meta name="viewport" content="width=device-width, initial-scale=1">
+					</head>
+					<body>
+						<div class="search" id="search">
+							<input class="search-box" placeholder="Click here to search" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+							</div>
+							<div class="app" id="app">
+								<div class="list" id="list">
+									<ul class="results" id="results" data-bind="foreach: filteredList">
+										<li class="place" id="place" data-bind="text: name, click: bounce"></li>
+									</ul>
+								</div>
+								<div class="map" id="map">Google Maps Error. Please Try To Reload.</div>
+							</div>
+							<script src="js/lib/knockout-3.4.2.js"></script>
+							<script src='js/lib/jquery-3.3.1.min.js'></script>
+							<script src="js/app.js"></script>
+							<script async defer onerror="errorOnLoad()"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwoBGmWobsDx5mUPLI8x6i9YkkgqeYXOU&callback=initApp&libraries=places"></script>
+						</body>
+					</html>
