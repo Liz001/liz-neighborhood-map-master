@@ -77,7 +77,7 @@ var Location = function(data) {
 
 
 
-    this.marker = new google.maps.Marker({
+    this.label = new google.maps.Marker({
         position: new google.maps.LatLng(this.lat, this.long),
         map: map,
         title: this.name
@@ -90,9 +90,9 @@ var Location = function(data) {
         content: self.contentString
     });
 
-    this.marker.setMap(map);
+    this.label.setMap(map);
 
-    this.marker.addListener('click', function() {
+    this.label.addListener('click', function() {
         self.contentString = `<div class="info-window-content">
                                 <b>` + self.name + `</b><br />
                                 ` + self.category + `<br />
@@ -100,14 +100,14 @@ var Location = function(data) {
                             </div>`;
         self.infoWindow.setContent(self.contentString);
         self.infoWindow.open(map, this);
-        self.marker.setAnimation(google.maps.Animation.BOUNCE);
+        self.label.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function() {
-            self.marker.setAnimation(null);
+            self.label.setAnimation(null);
         }, 750);
     });
 
     this.bounce = function(place) {
-        google.maps.event.trigger(self.marker, 'click');
+        google.maps.event.trigger(self.label, 'click');
     };
 
 }
@@ -136,14 +136,14 @@ function initMap() {
         var filter = self.query().toLowerCase();
         if (!filter) {
             self.locationList().forEach(function(placeUnit) {
-                placeUnit.marker.setVisible(true);
+                placeUnit.label.setVisible(true);
             });
             return self.locationList();
         } else {
             return ko.utils.arrayFilter(self.locationList(), function(placeUnit) {
                 var string = placeUnit['name'].toLowerCase();
                 var result = (string.indexOf(filter) !== -1);
-                placeUnit.marker.setVisible(result);
+                placeUnit.label.setVisible(result);
                 return result;
             });
         }

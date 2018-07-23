@@ -9,7 +9,7 @@ It's my final project of FEND Udacity.
 
 ## API's used are :
 * Foursquare API
-*  Google Maps API
+* Google Maps API
 
 
 # How to run?
