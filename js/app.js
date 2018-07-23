@@ -1,3 +1,4 @@
+//Name, latitude e longitude of places
 var places = [{
         'name': 'Cattedrale',
         'lat': 38.11437,
@@ -41,17 +42,18 @@ var places = [{
 ];
 
 var map;
+//Foursquare client_id and client_secret
 var client_id = "UISD4REMOZSQ2J5NJAXNQFUXNNNN121QPQ5XVC1AGKWXMMVB";
 var client_secret = "4FEOXYFGY0F0ASIPCTOVAPBSIJ44OO5JOYQFJYRGSQ2RUI0P";
 
 var Location = function(data) {
     var self = this;
-
+    // My data, from var places
     this.name = data.name;
     this.lat = data.lat;
     this.long = data.long;
 
-    // Foursquare
+    // Foursquare data
     this.category = "";
     this.address = "";
 
@@ -84,14 +86,13 @@ var Location = function(data) {
     });
 
 
-
-
     this.infoWindow = new google.maps.InfoWindow({
         content: self.contentString
     });
 
     this.label.setMap(map);
 
+    //Calling addListener() to register event handlers on the object
     this.label.addListener('click', function() {
         self.contentString = `<div class="info-window-content">
                                 <b>` + self.name + `</b><br />
@@ -111,7 +112,7 @@ var Location = function(data) {
     };
 
 }
-
+//Initial Map
 function initMap() {
     var self = this;
 
